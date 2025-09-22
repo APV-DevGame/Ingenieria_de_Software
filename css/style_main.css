@@ -1,0 +1,56 @@
+ * {
+     margin: 0;
+     padding: 0;
+ }
+
+ body,
+ html {
+     height: 100%;
+     margin: 0;
+     padding: 0;
+ }
+
+ .head {
+    text-align: center;
+    height: 15vh;
+     background-color: burlywood;
+ }
+
+ .container {
+     height: 100%;
+     border: 5px solid blueviolet;
+     display: flex;
+ }
+
+ .menu {
+     width: 25%;
+     height: 100%;
+     border: 5px solid green;
+ }
+
+ .catalog {
+     border: 3px solid yellow;
+     width: 75%;
+     height: 100%;
+     background-color: skyblue;
+     display: flex;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     overflow-y: scroll;
+ }
+
+ .show {
+     box-sizing: border-box;
+     width: 40%;
+     height: 40%;
+     background-color: white;
+     color: black;
+     margin: 40px;
+
+ }
+
+ .foot {
+     margin-block-start: 20px;
+     height: 15vh;
+     background-color: red;
+ }
