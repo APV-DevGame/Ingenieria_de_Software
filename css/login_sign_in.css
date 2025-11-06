@@ -1,3 +1,10 @@
+/* Variables */
+:root {
+    --primary-color: #1f1f1f;
+    --buttons: #2d79f3;
+    --text-color: white;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -14,14 +21,14 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--text-color);
 }
 
 .formacceso {
     box-sizing: border-box;
     width: 30vw;
     height: 80vh;
-    background-color: #1f1f1f;
+    background-color: var(--primary-color);
     border: 2px solid black;
     border-radius: 10%;
     overflow: hidden;
@@ -38,7 +45,7 @@ input {
 }
 
 label {
-    color: #f1f1f1;
+    color: var(--text-color);
 }
 
 input {
@@ -88,5 +95,5 @@ a{
     height: 100%;
     border: none;
     margin: 0;
-    background-color: #2d79f3;
+    background-color: var(--buttons);
 }
