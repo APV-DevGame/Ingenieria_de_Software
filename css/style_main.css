@@ -1,315 +1,200 @@
-/* Variables */
-:root {
-    --main-color: burlywood;
-    --secondary-color: saddlebrown;
-    --text-color: black;
-}
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
 
-* {
-    margin: 0;
-    padding: 0;
-}
+ body,
+ html {
+     height: 100%;
+     margin: 0;
+     padding: 0;
+     font-family: Arial, Helvetica, sans-serif;
+ }
 
-body,
-html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
+ .header-img {
+     margin-left: 20px;
+     margin-right: 10px;
+ }
 
-.head {
-    text-align: center;
-    height: 15vh;
-    background-color: var(--main-color);
-    padding: 1px;
-}
+ .head {
+     display: flex;
+     align-items: center;
+     font-size: smaller;
+     font-weight: 900;
+     color: white;
+     height: 20vh;
+     max-height: 25vh;
+     background-color: rgb(0, 59, 92);
+     padding: 1px;
+     margin: 15px;
+ }
 
-/*Styles de la parte del navegador*/
-.search-book {
-    height: 10vh;
-    border: 1px solid red;
+ /*Styles de la parte del navegador*/
+ .search-book {
+     display: flex;
+     align-items: center;
+     margin-left: 10px;
+     /*Aca se unen los pixeles jaja, para dar 35px en total*/
+     gap: 20px;
+     padding: 15px;
+     flex-wrap: wrap;
+ }
 
-    margin: 5px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+ .search-book .responsive-search {
+     flex: 1 1 75%;
+ }
 
-/*Imagen de la parte del buscador*/
-.search-book img {
-    width: 4%;
-    height: 100%;
-}
+ .search-book .responsive-sing-in {
+     border: 2px solid black;
+     flex: 1 1 5%;
+ }
 
-/*------------------------------------------------------------------------------------------*/
-/*Aca tenemos lo que es la parte de busqueda de los libros*/
-/* From Uiverse.io by Smit-Prajapati */
+ /*Imagen de la parte del buscador*/
+ .search-book .logo,
+ .header-img {
+     min-width: 3%;
+     max-width: 10%;
+     height: 50px;
+ }
 
-.search-container {
-    position: relative;
-    width: 85%;
-    height: 80%;
-    border-radius: 50px;
-    background: burlywood;
-    /*Hacemos un display:flex; por la imagen*/
-    display: flex;
-}
+ /*------------------------------------------------------------------------------------------*/
+ /*Aca tenemos lo que es la parte de busqueda de los libros*/
+ /* From Uiverse.io by Smit-Prajapati */
 
-/*Solo si el input tiene el foco jaja*/
-.search-container:has(.input:focus) {
-    box-shadow: var(--secondary-color) 3px 3px 5px 0px, var(--secondary-color) 5px 5px 30px 0px;
-    transition: box-shadow 0.3s ease-in-out;
-}
+ .search-container {
+     position: relative;
+     height: 50%;
+     border-radius: 2px;
+     background: burlywood;
+     /*Hacemos un display:flex; por la imagen*/
+     display: flex;
+ }
 
-.input {
-    padding: 10px;
-    width: 100%;
-    background: var(--main-color);
-    border: none;
-    color: var(--text-color);
-    font-size: 20px;
-    border-radius: 50px;
-    outline: none;
-}
+ /*Solo si el input tiene el foco jaja*/
+ .search-container:has(.input:focus) {
+     box-shadow: black 5px 2px 7px 0px;
+     transition: box-shadow 0.3s ease-in-out;
+ }
 
-.search__icon {
-    width: 50px;
-    aspect-ratio: 1;
-    border-left: 2px solid white;
-    border-top: 3px solid transparent;
-    border-bottom: 3px solid transparent;
-    border-radius: 50%;
-    padding-left: 12px;
-    margin-right: 10px;
-}
+ .input {
+     padding: 5px;
+     width: 100%;
+     border: 1px solid black;
+     border-right: none;
+     color: black;
+     font-size: 20px;
+     outline: none;
+ }
 
+ .search__icon {
+     width: 50px;
+     aspect-ratio: 1;
+     border-left: 2px solid white;
+     border-top: 3px solid transparent;
+     border-bottom: 3px solid transparent;
+     background-color: rgb(0, 184, 229);
 
-.search__icon path {
-    fill: white;
-}
-
-/*-------------------------------------------------------------------------------------------*/
-div.sign-in-system {
-    width: 10%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-div.sign-in-system a {
-    text-decoration: none;
-    color: #000;
-}
-
-.container {
-    height: 100%;
-    border: 1px solid blueviolet;
-    display: flex;
-}
-
-.menu {
-    box-sizing: border-box;
-    width: 10%;
-    height: 100%;
-    border: 1px solid green;
-}
-
-.menulist {
-    height: 100%;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    font-size: 20px;
-    border: 2px solid red;
-    text-align: center;
-}
-
-.menulist li {
-    padding: 10px;
-    text-align: center;
-    display: none;
-}
-
-/*Aca se va a ver todo lo relacionado con el catalogo*/
-.catalog {
-    border: 1px solid yellow;
-    width: 90%;
-    height: 100%;
-    background-color: var(--secondary-color);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-}
-
-.show {
-    box-sizing: border-box;
-    width: 40%;
-    height: 40%;
-    background-color: burlywood;
-    color: black;
-    margin: 40px;
-
-}
-
-.foot {
-    margin-block-start: 10px;
-    height: 15vh;
-    background-color: burlywood;
-}
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body,
-html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.head {
-    text-align: center;
-    height: 15vh;
-    background-color: var(--main-color);
-    padding: 1px;
-}
-
-/*Styles de la parte del navegador*/
-.search-book {
-    height: 10vh;
-    border: 1px solid red;
-
-    margin: 5px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/*Imagen de la parte del buscador*/
-.search-book img {
-    width: 4%;
-    height: 100%;
-}
-
-/*------------------------------------------------------------------------------------------*/
-/*Aca tenemos lo que es la parte de busqueda de los libros*/
-/* From Uiverse.io by Smit-Prajapati */
-
-.search-container {
-    position: relative;
-    width: 85%;
-    height: 80%;
-    border-radius: 50px;
-    background: burlywood;
-    /*Hacemos un display:flex; por la imagen*/
-    display: flex;
-}
-
-/*Solo si el input tiene el foco jaja*/
-.search-container:has(.input:focus) {
-    box-shadow: var(--secondary-color) 3px 3px 5px 0px, var(--secondary-color) 5px 5px 30px 0px;
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-.input {
-    padding: 10px;
-    width: 100%;
-    background: var(--main-color);
-    border: none;
-    color: var(--text-color);
-    font-size: 20px;
-    border-radius: 50px;
-    outline: none;
-}
-
-.search__icon {
-    width: 50px;
-    aspect-ratio: 1;
-    border-left: 2px solid white;
-    border-top: 3px solid transparent;
-    border-bottom: 3px solid transparent;
-    border-radius: 50%;
-    padding-left: 12px;
-    margin-right: 10px;
-}
+ }
 
 
-.search__icon path {
-    fill: white;
-}
+ .search__icon path {
+     fill: white;
+ }
 
-/*-------------------------------------------------------------------------------------------*/
-div.sign-in-system {
-    width: 10%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+ /*-------------------------------------------------------------------------------------------*/
+ div.sign-in-system {
+     height: 50px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: rgb(40, 199, 111);
+ }
 
-div.sign-in-system a {
-    text-decoration: none;
-    color: #000;
-}
+ div.sign-in-system a {
+     display: block;
+     text-decoration: none;
+     color: #000;
+ }
 
-.container {
-    height: 100%;
-    border: 1px solid blueviolet;
-    display: flex;
-}
+ .container {
+     height: 100%;
+     display: flex;
+     margin: 15px;
 
-.menu {
-    box-sizing: border-box;
-    width: 10%;
-    height: 100%;
-    border: 1px solid green;
-}
+ }
 
-.menulist {
-    height: 100%;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    font-size: 20px;
-    border: 2px solid red;
-    text-align: center;
-}
+ .menu {
+     box-sizing: border-box;
+     flex: 0 1 8%;
+     height: 100%;
+     /*Borde derecho*/
+ }
 
-.menulist li {
-    padding: 10px;
-    text-align: center;
-    display: none;
-}
+ .menulist {
+     /*El menu va a usar el 10% de su padre*/
+     width: 100%;
+     height: 100%;
+     list-style: none;
+     display: flex;
+     flex-direction: column;
+     gap: 0px;
+     font-size: 20px;
+     background-color: #EDEDED;
+     text-align: center;
+ }
 
-/*Aca se va a ver todo lo relacionado con el catalogo*/
-.catalog {
-    border: 1px solid yellow;
-    width: 90%;
-    height: 100%;
-    background-color: var(--secondary-color);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-}
+ .menulist ul li {
+     margin: 20px 10px;
+     list-style: none;
+ }
 
-.show {
-    box-sizing: border-box;
-    width: 40%;
-    height: 40%;
-    background-color: burlywood;
-    color: black;
-    margin: 40px;
+ .menulist ul li button:hover {
+     background-color: #EDEDED;
+ }
 
-}
+ .menulist ul li:has(button:hover) {
+     background-color: #EDEDED;
+ }
 
-.foot {
-    margin-block-start: 10px;
-    height: 15vh;
-    background-color: burlywood;
-}
+ .menulist ul li button {
+     border: none;
+     background-color: transparent;
+     padding: 10px;
+ }
+
+ /*Aca se va a ver todo lo relacionado con el catalogo*/
+ .catalog {
+     flex: 1 1 90%;
+     height: 100%;
+     background-color: #EDEDED;
+     padding: 5px;
+     overflow-y: auto;
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+     /*Height of grid items*/
+     grid-auto-rows: 50%;
+     gap: 5px;
+ }
+
+ .increment {
+     /*Aqui usamos el 50% de la altura del padre, que aca es el 100%*/
+     border: 2px solid black;
+     height: 100%;
+     box-sizing: border-box;
+     background-color: burlywood;
+     color: black;
+
+ }
+
+ .foot {
+     padding: 1px;
+     margin: 15px;
+     align-content: center;
+     min-width: none;
+     text-align: center;
+     height: 15vh;
+     color: #050D1A;
+     background-color: #EDEDED;
+     font-style: italic;
+ }
