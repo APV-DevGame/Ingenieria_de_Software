@@ -10,16 +10,17 @@
 </head>
 
 <body>
-    <header class="head">
-        <h1>Sistema de biblioteca</h1>
+    <header class="head"> 
+        <img src="img/Escudobuap.png" alt="" class="header-img">
+        <h1>Benemerita Universidad Autonoma de Puebla</h1>
     </header>
     <!--Buscador de los libros en la biblioteca-->
     <div class="search-book">
-        <img src="img/libro.png" alt="Imagen de biblioteca">
+        <img src="img/sinfondo.png" alt="Imagen de biblioteca" class="logo">
         <!-- From Uiverse.io by Smit-Prajapati -->
 
-        <div class="search-container">
-            <input class="input" type="text" placeholder="Buscar libro...">
+        <div class="search-container responsive-search">
+            <input class="input" type="text" placeholder="Busqueda de libros...">
             <svg viewBox="0 0 24 24" class="search__icon">
                 <g>
                     <path
@@ -28,7 +29,7 @@
                 </g>
             </svg>
         </div>
-        <div class="sign-in-system">
+        <div class="sign-in-system responsive-sing-in">
             <a href="login.html">Iniciar Sesion</a>
         </div>
     </div>
@@ -36,28 +37,26 @@
     <main class="container">
         <!--Aca va ir nuestra parte de filtros-->
         <div class="menu">
-            <ul class="menulist">
-                <!--Arreglar esta parte-->
-                <h1 style="font-size: 20px;">Filtros</h1>
-                <li><a href="#">link 1</a></li>
-                <li><a href="#">link 2</a></li>
-                <li><a href="#">link 3</a></li>
-                <li><a href="#">Link 4</a></li>
-                <li><a href="#">Link 5</a></li>
-            </ul>
+            <details class="menulist">
+                <summary>Filtrar</summary>
+                <ul>
+                    <!--Uso de botones para javascript-->
+                    <!--Funciones para actualizar los datos de el catalogo en id="increment"-->
+                    <li><button onclick="funcion1()">Opcion 1</button></li>
+                    <li><button onclick="funcion2()">Opcion 2</button></li>
+                    <li><button onclick="funcion3()">Opcion 3</button></li>
+                    <li><button onclick="funcion4()">Opcion 4</button></li>
+                    <li><button onclick="funcion5()">Opcion 5</button></li>
+                </ul>
+            </details>
         </div>
         <div class="catalog">
-            <div class="show">libro 1</div>
-            <div class="show">libro 2</div>
-            <div class="show">libro 3</div>
-            <div class="show">libro 4</div>
-            <div class="show">libro 5</div>
-            <div class="show">libro 6</div>
-            <div class="show">libro 7</div>
+            <!--Se van incrementando a medida que se agregan libros-->
+            <div class="increment"></div>
         </div>
     </main>
     <footer class="foot">
-        <p>Este es nuestro pie de pagina</p>
+        <p>Todos los derechos reservados</p>
     </footer>
 </body>
 
