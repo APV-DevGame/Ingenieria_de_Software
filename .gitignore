@@ -1,0 +1,21 @@
+# Configuración sensible (NO subir a GitHub)
+js/config.js
+.env
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Node modules (si usas npm más adelante)
+node_modules/
+package-lock.json
+
+# Archivos temporales
+*.tmp
+.cache/
