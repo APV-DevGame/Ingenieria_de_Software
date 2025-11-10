@@ -1,7 +1,43 @@
 // Variables de acceso a los usuarios
 const Usuarios = supabaseClient.from('Usuarios');
-// Referencia al formulario
+
+// Referencias del login.html
 const formulario = document.getElementById('formacc');
+const inputEmail = document.getElementById('corr');
+const inputPassword = document.getElementById('contrasenia');
+const botonLogin = document.getElementById('btnlogin');
+
+// Event listener
+formulario.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    // Valores
+    const email = inputEmail.value.trim();
+    const password = inputPassword.value;
+
+    // Deshabilitar boton
+    botonLogin.disabled = true;
+    botonLogin.value = "Verificando...";
+
+    // Verficar credenciales
+    const resultado = await verificarCredenciales(email, password);
+
+    // Habilitar boton
+    botonLogin.disabled = false;
+    botonLogin.value = "Iniciar Sesión";
+
+    if (resultado) {
+        // Credenciales correctas
+        alert("Inicio de sesión exitoso.");
+        // Redirigir a la página principal
+        window.location.href = "index.html";
+    }
+    else {
+        // Credenciales incorrectas
+        alert("Correo o contraseña incorrectos. Inténtalo de nuevo.");
+        inputPassword.value = "";
+        inputPassword.focus();
+    }
+});
 
 // Funcion para obtener todos los usuarios
 async function obtenerUsuarios() {
@@ -40,10 +76,6 @@ async function verificarCredenciales(email, password) {
     return false;
 }
 
-async function recibirCredenciales() {
-    // Aquí va la lógica del botón y llenado de los campos
-}
-
 async function registrarUsuario(nuevoUsuario) {
 
 }
@@ -61,4 +93,3 @@ console.log("Imprimiendo Usuarios: ");
 
 // En caso de ocupar la 'data', modificar la funcion o hacer una funcion async
 obtenerMatriculasNombres();
-verificarCredenciales("202326736", "prueba123")
