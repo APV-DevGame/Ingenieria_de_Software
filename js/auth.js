@@ -92,4 +92,3 @@ console.log("Imprimiendo Usuarios: ");
 */
 
 // En caso de ocupar la 'data', modificar la funcion o hacer una funcion async
-obtenerMatriculasNombres();
