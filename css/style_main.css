@@ -1,200 +1,454 @@
- * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
- }
+/* ========================================
+   RESET Y VARIABLES
+======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
- body,
- html {
-     height: 100%;
-     margin: 0;
-     padding: 0;
-     font-family: Arial, Helvetica, sans-serif;
- }
+:root {
+    /* Colores BUAP */
+    --color-primary: #003B5C;      /* Azul BUAP oscuro */
+    --color-primary-light: #0066A1; /* Azul BUAP medio */
+    --color-accent: #28C76F;        /* Verde acento */
+    --color-accent-hover: #24B263;
+    --color-warning: #FFB300;       /* Amarillo/dorado */
+    
+    /* Grises */
+    --color-bg-light: #F8F9FA;
+    --color-bg-medium: #E9ECEF;
+    --color-bg-dark: #DEE2E6;
+    --color-text: #212529;
+    --color-text-light: #6C757D;
+    
+    /* Espaciado */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Bordes */
+    --border-radius: 8px;
+    --border-radius-sm: 4px;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
 
- .header-img {
-     margin-left: 20px;
-     margin-right: 10px;
- }
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-bg-light);
+    color: var(--color-text);
+}
 
- .head {
-     display: flex;
-     align-items: center;
-     font-size: smaller;
-     font-weight: 900;
-     color: white;
-     height: 20vh;
-     max-height: 25vh;
-     background-color: rgb(0, 59, 92);
-     padding: 1px;
-     margin: 15px;
- }
+/* ========================================
+   HEADER
+======================================== */
+.header-img {
+    width: 80px;
+    height: auto;
+    margin-left: var(--spacing-md);
+    margin-right: var(--spacing-sm);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease;
+}
 
- /*Styles de la parte del navegador*/
- .search-book {
-     display: flex;
-     align-items: center;
-     margin-left: 10px;
-     /*Aca se unen los pixeles jaja, para dar 35px en total*/
-     gap: 20px;
-     padding: 15px;
-     flex-wrap: wrap;
- }
+.header-img:hover {
+    transform: scale(1.05);
+}
 
- .search-book .responsive-search {
-     flex: 1 1 75%;
- }
+.head {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    min-height: 100px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    letter-spacing: 0.5px;
+}
 
- .search-book .responsive-sing-in {
-     border: 2px solid black;
-     flex: 1 1 5%;
- }
+/* ========================================
+   BARRA DE BÚSQUEDA Y NAVEGACIÓN
+======================================== */
+.search-book {
+    display: flex;
+    align-items: center;
+    margin: 0 var(--spacing-md) var(--spacing-lg) var(--spacing-md);
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    flex-wrap: wrap;
+}
 
- /*Imagen de la parte del buscador*/
- .search-book .logo,
- .header-img {
-     min-width: 3%;
-     max-width: 10%;
-     height: 50px;
- }
+.search-book .responsive-search {
+    flex: 1 1 65%;
+    min-width: 300px;
+}
 
- /*------------------------------------------------------------------------------------------*/
- /*Aca tenemos lo que es la parte de busqueda de los libros*/
- /* From Uiverse.io by Smit-Prajapati */
+.search-book .responsive-sing-in {
+    flex: 1 1 auto;
+    min-width: 150px;
+}
 
- .search-container {
-     position: relative;
-     height: 50%;
-     border-radius: 2px;
-     background: burlywood;
-     /*Hacemos un display:flex; por la imagen*/
-     display: flex;
- }
+/* Logo del buscador */
+.search-book .logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
 
- /*Solo si el input tiene el foco jaja*/
- .search-container:has(.input:focus) {
-     box-shadow: black 5px 2px 7px 0px;
-     transition: box-shadow 0.3s ease-in-out;
- }
+.search-book .logo:hover {
+    transform: rotate(5deg) scale(1.1);
+}
 
- .input {
-     padding: 5px;
-     width: 100%;
-     border: 1px solid black;
-     border-right: none;
-     color: black;
-     font-size: 20px;
-     outline: none;
- }
+/* ========================================
+   CONTENEDOR DE BÚSQUEDA
+======================================== */
+.search-container {
+    position: relative;
+    height: 50px;
+    border-radius: var(--border-radius-sm);
+    background: white;
+    display: flex;
+    overflow: hidden;
+    border: 2px solid var(--color-bg-dark);
+    transition: all 0.3s ease;
+}
 
- .search__icon {
-     width: 50px;
-     aspect-ratio: 1;
-     border-left: 2px solid white;
-     border-top: 3px solid transparent;
-     border-bottom: 3px solid transparent;
-     background-color: rgb(0, 184, 229);
+.search-container:has(.input:focus) {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 59, 92, 0.1);
+}
 
- }
+.input {
+    padding: var(--spacing-sm) var(--spacing-md);
+    width: 100%;
+    border: none;
+    color: var(--color-text);
+    font-size: 1rem;
+    outline: none;
+    background-color: transparent;
+}
 
+.input::placeholder {
+    color: var(--color-text-light);
+}
 
- .search__icon path {
-     fill: white;
- }
+.search__icon {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
 
- /*-------------------------------------------------------------------------------------------*/
- div.sign-in-system {
-     height: 50px;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     background-color: rgb(40, 199, 111);
- }
+.search__icon:hover {
+    background: var(--color-primary-light);
+}
 
- div.sign-in-system a {
-     display: block;
-     text-decoration: none;
-     color: #000;
- }
+.search__icon path {
+    fill: white;
+}
 
- .container {
-     height: 100%;
-     display: flex;
-     margin: 15px;
+/* ========================================
+   BOTÓN INICIAR SESIÓN
+======================================== */
+div.sign-in-system {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
 
- }
+div.sign-in-system:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
 
- .menu {
-     box-sizing: border-box;
-     flex: 0 1 8%;
-     height: 100%;
-     /*Borde derecho*/
- }
+div.sign-in-system a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: var(--spacing-sm) var(--spacing-md);
+    letter-spacing: 0.5px;
+}
 
- .menulist {
-     /*El menu va a usar el 10% de su padre*/
-     width: 100%;
-     height: 100%;
-     list-style: none;
-     display: flex;
-     flex-direction: column;
-     gap: 0px;
-     font-size: 20px;
-     background-color: #EDEDED;
-     text-align: center;
- }
+/* ========================================
+   CONTENEDOR PRINCIPAL
+======================================== */
+.container {
+    display: flex;
+    margin: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+    gap: var(--spacing-md);
+    min-height: 500px;
+}
 
- .menulist ul li {
-     margin: 20px 10px;
-     list-style: none;
- }
+/* ========================================
+   MENÚ LATERAL (FILTROS)
+======================================== */
+.menu {
+    flex: 0 0 200px;
+    min-width: 150px;
+}
 
- .menulist ul li button:hover {
-     background-color: #EDEDED;
- }
+.menulist {
+    width: 100%;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
 
- .menulist ul li:has(button:hover) {
-     background-color: #EDEDED;
- }
+.menulist summary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: white;
+    padding: var(--spacing-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    transition: background 0.3s ease;
+}
 
- .menulist ul li button {
-     border: none;
-     background-color: transparent;
-     padding: 10px;
- }
+.menulist summary::-webkit-details-marker {
+    display: none;
+}
 
- /*Aca se va a ver todo lo relacionado con el catalogo*/
- .catalog {
-     flex: 1 1 90%;
-     height: 100%;
-     background-color: #EDEDED;
-     padding: 5px;
-     overflow-y: auto;
-     display: grid;
-     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
-     /*Height of grid items*/
-     grid-auto-rows: 50%;
-     gap: 5px;
- }
+.menulist summary::after {
+    content: "▼";
+    float: right;
+    transition: transform 0.3s ease;
+}
 
- .increment {
-     /*Aqui usamos el 50% de la altura del padre, que aca es el 100%*/
-     border: 2px solid black;
-     height: 100%;
-     box-sizing: border-box;
-     background-color: burlywood;
-     color: black;
+.menulist[open] summary::after {
+    transform: rotate(180deg);
+}
 
- }
+.menulist summary:hover {
+    background: var(--color-primary-light);
+}
 
- .foot {
-     padding: 1px;
-     margin: 15px;
-     align-content: center;
-     min-width: none;
-     text-align: center;
-     height: 15vh;
-     color: #050D1A;
-     background-color: #EDEDED;
-     font-style: italic;
- }
+.menulist ul {
+    padding: var(--spacing-sm) 0;
+    margin: 0;
+}
+
+.menulist ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menulist ul li button {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    transition: all 0.2s ease;
+}
+
+.menulist ul li button:hover {
+    background-color: var(--color-bg-light);
+    color: var(--color-primary);
+    padding-left: calc(var(--spacing-md) + 5px);
+}
+
+/* ========================================
+   CATÁLOGO DE LIBROS
+======================================== */
+.catalog {
+    flex: 1;
+    background-color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 300px;
+    gap: var(--spacing-md);
+    max-height: 600px;
+}
+
+/* Scrollbar personalizada */
+.catalog::-webkit-scrollbar {
+    width: 8px;
+}
+
+.catalog::-webkit-scrollbar-track {
+    background: var(--color-bg-light);
+    border-radius: 10px;
+}
+
+.catalog::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
+}
+
+.catalog::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-light);
+}
+
+/* Cards de libros */
+.increment {
+    border: 2px solid var(--color-bg-dark);
+    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, #FFF8E1 0%, #FFE082 100%);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.increment:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+}
+
+/* Placeholder para cuando no hay libros */
+.catalog:empty::before {
+    content: "No hay libros para mostrar";
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: 1.2rem;
+    padding: var(--spacing-xl);
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+.foot {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-md);
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-bg-medium) 0%, var(--color-bg-dark) 100%);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    font-style: italic;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+@media (max-width: 1024px) {
+    .catalog {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .head h1 {
+        font-size: 1rem;
+    }
+    
+    .header-img {
+        width: 60px;
+    }
+    
+    .search-book {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .search-book .responsive-search,
+    .search-book .responsive-sing-in {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+    
+    .container {
+        flex-direction: column;
+    }
+    
+    .menu {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    
+    .catalog {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-auto-rows: 250px;
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .head h1 {
+        font-size: 0.85rem;
+    }
+    
+    .catalog {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 280px;
+    }
+    
+    .search-book .logo {
+        display: none;
+    }
+}
+
+/* ========================================
+   ANIMACIONES Y EFECTOS
+======================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.increment {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus visible para accesibilidad */
+*:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
