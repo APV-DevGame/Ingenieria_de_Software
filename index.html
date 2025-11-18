@@ -43,11 +43,11 @@
                 <summary>Filtrar por Categoría</summary>
                 <ul>
                     <!-- Botones de filtro para categorías -->
-                    <li><button onclick="filtrarCategoria('todas')">📚 Todas</button></li>
-                    <li><button onclick="filtrarCategoria('ficcion')">📖 Ficción</button></li>
-                    <li><button onclick="filtrarCategoria('ciencia')">🔬 Ciencia</button></li>
-                    <li><button onclick="filtrarCategoria('historia')">📜 Historia</button></li>
-                    <li><button onclick="filtrarCategoria('tecnologia')">💻 Tecnología</button></li>
+                    <li><button id="todas">📚 Todas</button></li>
+                    <li><button id="ficcion">📖 Ficción</button></li>
+                    <li><button id="ciencia">🔬 Ciencia</button></li>
+                    <li><button id="historia">📜 Historia</button></li>
+                    <li><button id="tecnologia">💻 Tecnología</button></li>
                 </ul>
             </details> 
         </aside>
@@ -73,13 +73,19 @@
     </footer>
 
     <!-- Scripts -->
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase_client.js"></script>
+    <script src="js/conseguirLibros.js">
+
+    </script>
+    <!-- <script>
         // Funciones placeholder para filtros
         function filtrarCategoria(categoria) {
             console.log('Filtrar por:', categoria);
             // Aquí implementarás la lógica de filtrado
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
