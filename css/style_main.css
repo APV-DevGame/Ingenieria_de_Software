@@ -38,9 +38,11 @@
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
+html{
+    height: 100%;
 
-body,
-html {
+}
+body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -203,8 +205,9 @@ div.sign-in-system a {
 .container {
     display: flex;
     margin: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+    height: 80%;
     gap: var(--spacing-md);
-    min-height: 500px;
+    border: 2px solid red;
 }
 
 /* ========================================
@@ -213,10 +216,12 @@ div.sign-in-system a {
 .menu {
     flex: 0 0 200px;
     min-width: 150px;
+    height: 100%;
 }
 
 .menulist {
     width: 100%;
+    height: 100%;
     background-color: white;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
@@ -296,7 +301,7 @@ div.sign-in-system a {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-auto-rows: 300px;
     gap: var(--spacing-md);
-    max-height: 600px;
+    height: 100%;
 }
 
 /* Scrollbar personalizada */
@@ -330,6 +335,8 @@ div.sign-in-system a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height:260px;
+    width: 255px;
 }
 
 .increment:hover {
