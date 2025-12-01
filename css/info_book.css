@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    border: none;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+    padding: 1.5rem;
+    padding-right: 2rem;
+}
+body{
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #212529;
+}
+.header{
+    background: linear-gradient(135deg, #003B5C 0%, #0066A1 100%);
+    color: white;
+    min-height: 100px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
