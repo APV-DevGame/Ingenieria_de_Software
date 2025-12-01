@@ -207,7 +207,6 @@ div.sign-in-system a {
     margin: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
     height: 80%;
     gap: var(--spacing-md);
-    border: 2px solid red;
 }
 
 /* ========================================
