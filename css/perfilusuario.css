@@ -81,6 +81,15 @@ body{
 .info{
     grid-column: 2/5;
 }
+.info table{
+    width: 100%;
+    border: 2px;
+}
+td,th{
+    padding: 10px;
+    text-align: center;
+    width: 30%;
+}
 
 /*Agregamos estilos al pie de pagina*/
 .foot{
