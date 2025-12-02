@@ -15,22 +15,33 @@
         <h1>Benemerita Universidad Autonoma de Puebla</h1>
     </header>
     <main class="datos-user-grid">
-        <div class="item menu"></div>
-        <div class="item photo"></div>
-        <div class="item data"></div>
+        <div class="item menu">Menu</div>
+        <div class="item photo">
+            <img src="img/catxd.jpg" alt="" width="100%" height="100%">
+        </div>
+        <div class="item data">
+            <h1 id="name-user">Name usuario</h1>
+
+        </div>
+        <!--Aca va a ir la informacion del usuario-->
         <div class="item info">
             <table>
-                <caption>Informacion de usuario</caption>
+                <caption>Informacion de actividad</caption>
                 <thead>
                     <tr>
                         <th scope="col">Book</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Expira</th>
                     </tr>
-                    <tr>
-                        <td>100 anios de soledad</td>
-                    </tr>
                 </thead>
+                <tbody>
+                    <!--Aca van a ir los datos del libro, estado y expiracion, este es un autoincrementable-->
+                    <tr id="datos">
+                        <td id="book"></td>
+                        <td id="estado"></td>
+                        <td id="expiration"></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </main>
