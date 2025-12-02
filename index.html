@@ -22,7 +22,7 @@
         <img src="img/sinfondo.png" alt="Logo Biblioteca" class="logo">
 
         <div class="search-container responsive-search">
-            <input class="input" type="text" placeholder="Buscar libros por título, autor o categoría..." aria-label="Búsqueda de libros">
+            <input class="input" type="text" placeholder="Buscar libros por título..." aria-label="Búsqueda de libros">
             <svg viewBox="0 0 24 24" class="search__icon" aria-hidden="true">
                 <g>
                     <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
@@ -30,6 +30,7 @@
             </svg>
         </div>
 
+        <!-- Boton de inicio de sesión -->
         <div class="sign-in-system responsive-sing-in">
             <a href="login.html">Iniciar Sesión</a>
         </div>
@@ -51,18 +52,18 @@
                 </ul>
             </details> 
         </aside>
- 
+
         <!-- Catálogo de libros -->
         <section class="catalog" id="catalogo">
             <!-- Los libros se cargarán dinámicamente aquí -->
             <!-- Ejemplo de placeholder: -->
-            <article class="increment">
+            <!-- <article class="increment">
                 <h3 style="color: #003B5C; margin-bottom: 10px;">Título del Libro</h3>
                 <p style="color: #6C757D; font-size: 0.9rem;">Autor: Nombre del Autor</p>
                 <p style="color: #6C757D; font-size: 0.9rem;">Categoría: Ficción</p>
                 <p style="margin-top: 15px; flex-grow: 1;">Breve descripción del contenido del libro...</p>
                 <button style="background: #003B5C; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; margin-top: 10px;" >Ver detalles</button>
-            </article>
+            </article> -->
         </section>
     </main>
     <!-- Aquí lo de incrementar libros que puso Emmanuel -->
@@ -76,7 +77,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="js/config.js"></script>
     <script src="js/supabase_client.js"></script>
-    <script src="js/conseguirLibros.js">
+    <script src="js/conseguirLibros.js"></script>
+    <script type="module" src="js/sessionStorage.js"></script>
 
     </script>
     <!-- <script>
