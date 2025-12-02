@@ -1,0 +1,96 @@
+*{
+    margin:0%;
+    padding: 0%;
+    border:none;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colores BUAP */
+    --color-primary: #003B5C;      /* Azul BUAP oscuro */
+    --color-primary-light: #0066A1; /* Azul BUAP medio */
+    --color-accent: #28C76F;        /* Verde acento */
+    --color-accent-hover: #24B263;
+    --color-warning: #FFB300;       /* Amarillo/dorado */
+    
+    /* Grises */
+    --color-bg-light: #F8F9FA;
+    --color-bg-medium: #E9ECEF;
+    --color-bg-dark: #DEE2E6;
+    --color-text: #212529;
+    --color-text-light: #6C757D;
+    
+    /* Espaciado */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Bordes */
+    --border-radius: 8px;
+    --border-radius-sm: 4px;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+html{
+    height: 100%;
+    padding: 1.5rem;
+    padding-right: 2rem;
+}
+body{
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #212529;
+}
+.header{
+    background: linear-gradient(135deg, #003B5C 0%, #0066A1 100%);
+    color: white;
+    min-height: 100px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+.datos-user-grid{
+    height: 100%;
+    margin-top: 10px;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+.item{
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 8px;
+    height: 100%;
+}
+.menu{
+    grid-row: 1/3;
+}
+.data{
+    grid-column: 3/5;
+}
+.info{
+    grid-column: 2/5;
+}
+
+/*Agregamos estilos al pie de pagina*/
+.foot{
+    margin-top: 10px;
+    padding: var(--spacing-lg);
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-bg-medium) 0%, var(--color-bg-dark) 100%);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    font-style: italic;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
