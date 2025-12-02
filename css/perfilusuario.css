@@ -68,13 +68,43 @@ body{
 }
 .item{
     width: 100%;
-    border: 2px solid black;
     border-radius: 8px;
     height: 100%;
 }
 /*Esto es la parte del menu*/
 .menu{
     grid-row: 1/3;
+    height: 100%;
+    border: 0.5px solid black;
+}
+.menu .cabecera{
+    text-align: center;
+    align-content: center;
+    height: 20%;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #003B5C 0%, #0066A1 100%);
+    color: white;
+}
+.menu .lista{
+    list-style: none;
+    height: 60%;
+    padding: 10px;
+}
+.lista li{
+    margin: 20px;
+    height: 20%;
+}
+li button{
+    background-color: white;
+    color: black;
+    width: 30%;
+    height: 100%;
+}
+.lista button:hover{
+    background-color: #eeeeee;
+}
+.lista li:has(button:hover){
+    transform: translate(5px);
 }
 /*Estilos para la foto del perfil*/
 .photo{
