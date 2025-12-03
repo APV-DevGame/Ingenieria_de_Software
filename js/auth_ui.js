@@ -24,7 +24,7 @@ function renderAuthUI() {
         console.log("Matricula " + getField('matricula')); // Línea de depuración
         loginArea.innerHTML = `
             <div id="btnPerfil" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-                <span style="color:white;font-weight:600;">Bienvenido, ${nombre}</span>
+                <span style="color:white;font-weight:600;">Bienvenido, ${nombreSeguro}</span>
             </div>
         `;
 
