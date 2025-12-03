@@ -8,6 +8,13 @@ const TodasLasCategorias = document.getElementById('todas'),
     ContenedorPortadas = document.getElementById('catalogo');
 mostrarPortadas('');
 
+// Funcionalidad del botón "Ver detalles"
+document.addEventListener('click', (e) => {
+    if (e.target && e.target.classList.contains('infoLibro')) {
+        window.location.href = 'info_book.html';
+    }
+})
+
 // add EventListener
 document.addEventListener('click', async (e) => {
     switch (e.target) {
@@ -56,7 +63,7 @@ async function mostrarPortadas(generoSeleccionado) {
                 <p style="color: #6C757D; font-size: 0.9rem;">Autor: ${libro.Autor}</p>
                 <p style="color: #6C757D; font-size: 0.9rem;">Categoría: ${libro.Genero}</p>
                 <p style="margin-top: 15px; flex-grow: 1;">${libro.Descripcion}</p>
-                <button style="background: #003B5C; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; margin-top: 10px;">Ver Detalles</button>
+                <button class="infoLibro" style="background: #003B5C; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; margin-top: 10px;">Ver Detalles</button>
             </article>
         `;
         if (ContenedorPortadas) {
