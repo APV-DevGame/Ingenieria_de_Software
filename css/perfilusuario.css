@@ -57,6 +57,7 @@ body{
     padding: 1.5rem;
     border-radius: 8px;
     letter-spacing: 0.5px;
+    box-shadow: 10px 10px 30px 0px black;
 }
 .datos-user-grid{
     height: 100%;
@@ -99,9 +100,6 @@ li button{
     color: black;
     width: 30%;
     height: 100%;
-}
-.lista button:hover{
-    background-color: #eeeeee;
 }
 .lista li:has(button:hover){
     transform: translate(5px);
