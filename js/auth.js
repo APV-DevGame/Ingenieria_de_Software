@@ -31,16 +31,23 @@ formulario.addEventListener('submit', async (e) => {
     if (resultado) {
         // Credenciales correctas
         alert("Inicio de sesión exitoso.");
+        
         // Armamos el objeto usuario
-        const usuarioAutenticado = await supabaseClient
+        const { data: usuario, error } = await supabaseClient
             .from('Usuarios')
             .select('*')
-            .eq('CorreoBUAP', email);
-        
-        setUser(usuarioAutenticado.data);
-        console.log("Usuario guardado en sessionStorage: ", usuarioAutenticado.data);
-        // Redirigir a la página principal
+            .eq('CorreoBUAP', email)
+            .maybeSingle();
 
+        if(error) console.error("Error obteniendo datos del usuario: ", error);
+        else if(!usuario) console.error("No se encontró el usuario después de verificar credenciales.");
+        else {
+            delete usuario.Contrasenia; // No guardar la contraseña
+            setUser(usuario);
+        }
+        console.log("Usuario guardado en sessionStorage: ", usuario);
+
+        // Redirigir a la página principal
         window.location.href = "index.html";
     }
     else {

@@ -21,16 +21,17 @@ function renderAuthUI() {
         const nombre = getField('nombre') || getField('Nombre') || 'Usuario';
         const nombreSeguro = escapeHtml(nombre);
         
+        console.log("Matricula " + getField('matricula')); // Línea de depuración
         loginArea.innerHTML = `
             <div id="btnPerfil" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-                <span style="color:white;font-weight:600;">Bienvenido, ${nombreSeguro}</span>
+                <span style="color:white;font-weight:600;">Bienvenido, ${nombre}</span>
             </div>
         `;
 
-        // Agregar listener al botón de cerrar sesión
-        const btnCerrar = document.getElementById('btnPerfil');
-        if (btnCerrar) {
-            btnCerrar.addEventListener('click', () => {
+        // Agregar evento al botón para el dashboard del usuario
+        const btnPerfil = document.getElementById('btnPerfil');
+        if (btnPerfil) {
+            btnPerfil.addEventListener('click', () => {
                 window.location.href = 'perfilUsuario.html';
             });
         }

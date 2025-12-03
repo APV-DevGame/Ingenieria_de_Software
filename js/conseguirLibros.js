@@ -47,7 +47,7 @@ async function mostrarPortadas(generoSeleccionado) {
 
     // Aquí iría el código para mostrar las portadas en el DOM
     for (const libro of libros) {
-        console.log(`Título: ${libro.Titulo}, Autor: ${libro.Autor}, Género: ${libro.Genero}, Portada: ${libro.Portada}, Descripcion: ${libro.Descripcion}`);
+        //console.log(`Título: ${libro.Titulo}, Autor: ${libro.Autor}, Género: ${libro.Genero}, Portada: ${libro.Portada}, Descripcion: ${libro.Descripcion}`);
         // Código para crear elementos en el DOM y mostrar las portadas
         const portada = document.createElement('libroN');
         portada.innerHTML = `
@@ -73,7 +73,6 @@ async function conseguirLibros(generoSeleccionado, inicio = 0, limite = 10){
         let data, error;
         // Si no hay genero
         if(generoNormalizado === ''){
-            console.log("Sin genero");
             ({ data, error } = await supabaseClient
             .from('Libros')
             .select('Titulo, Autor, Genero, Portada, Descripcion')
@@ -81,7 +80,6 @@ async function conseguirLibros(generoSeleccionado, inicio = 0, limite = 10){
             .range(inicio, inicio + limite - 1));
         }
         else{
-            console.log("Con genero: ", generoNormalizado);
             ({ data, error } = await supabaseClient
             .from('Libros')
             .select('Titulo, Autor, Genero, Portada, Descripcion')
