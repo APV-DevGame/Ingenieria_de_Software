@@ -7,7 +7,7 @@ if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
         // Limpiar la sesión del usuario
         clearUser();
-        alert("Sesion cerrada exitosamente")
+        console.log("Sesion cerrada exitosamente")
         // Redirigir a la página de inicio de sesión
         window.location.href = 'index.html';
     });
