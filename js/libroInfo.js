@@ -18,9 +18,18 @@ if(tituloElemento) {
     tituloElemento.textContent = tituloLibro || 'Información del Libro';
 }
 
-// Reemplazar la descripción del libro en el DOM
+// Reemplazar la información del libro en el DOM
 if(libroDesc) {
-    libroDesc.textContent = descLibro || 'Descripción no disponible.';
+    const autorLibro = getLibroField('Autor') || 'Autor desconocido';
+    const generoLibro = getLibroField('Genero') || 'Género no especificado';
+    const editorialLibro = getLibroField('Editorial') || 'Editorial no especificada';
+    
+    libroDesc.innerHTML = `
+        <p>${descLibro || 'Descripción no disponible.'}</p>
+        <p class="autor"><strong>Autor:</strong> ${autorLibro}</p>
+        <p class="genero"><strong>Género:</strong> ${generoLibro}</p>
+        <p class="editorial"><strong>Editorial:</strong> ${editorialLibro}</p>
+    `;
 }
 
 // Detectar si el libro ya fue reservado (consulta a la BD)
