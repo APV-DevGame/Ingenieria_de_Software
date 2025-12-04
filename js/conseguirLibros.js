@@ -1,4 +1,4 @@
-import { setLibro } from './sessionStorage.js';
+import { setLibro, isLoggedIn } from './sessionStorage.js';
 
 // Elementos del DOM
 const TodasLasCategorias = document.getElementById('todas'),
@@ -66,6 +66,10 @@ async function mostrarPortadas(generoSeleccionado) {
 
             // Aregar evento al boton de ver detalles
             portada.querySelector('.infoLibro').addEventListener('click', () => {
+                if(isLoggedIn() === false) {
+                    alert("Debes iniciar sesión para ver los detalles del libro.");
+                    return;
+                }
                 setLibro(libro);
                 window.location.href = 'info_book.html';
             });

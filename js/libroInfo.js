@@ -7,6 +7,7 @@ console.log('Libro en sessionStorage:', getLibro());
 const tituloElemento = document.getElementById('title-book');
 const libroDesc = document.getElementById('libro-info');
 const reservarBtn = document.getElementById('reserved');
+const libroImg = document.getElementById('libroImg');
 
 // Titulo del libro
 const tituloLibro = getLibroField('Titulo');
@@ -16,6 +17,16 @@ const libroId = getLibroField('ID');
 // Reemplazar el titulo del libro en el DOM
 if(tituloElemento) {
     tituloElemento.textContent = tituloLibro || 'Información del Libro';
+}
+
+// Reemplazar la imagen del libro en el DOM
+if(libroImg) {
+    const urlImagen = getLibroField('Portada');
+    if (urlImagen) {
+        libroImg.src = urlImagen;
+    } else {
+        console.warn('No se encontró URL de imagen para el libro.');
+    }
 }
 
 // Reemplazar la información del libro en el DOM
