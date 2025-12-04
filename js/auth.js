@@ -1,3 +1,6 @@
+// Metodo para la sesión actual
+import { setUser } from './sessionStorage.js';
+
 // Variables de acceso a los usuarios
 const Usuarios = supabaseClient.from('Usuarios');
 
@@ -28,6 +31,22 @@ formulario.addEventListener('submit', async (e) => {
     if (resultado) {
         // Credenciales correctas
         alert("Inicio de sesión exitoso.");
+        
+        // Armamos el objeto usuario
+        const { data: usuario, error } = await supabaseClient
+            .from('Usuarios')
+            .select('*')
+            .eq('CorreoBUAP', email)
+            .maybeSingle();
+
+        if(error) console.error("Error obteniendo datos del usuario: ", error);
+        else if(!usuario) console.error("No se encontró el usuario después de verificar credenciales.");
+        else {
+            delete usuario.Contrasenia; // No guardar la contraseña
+            setUser(usuario);
+        }
+        console.log("Usuario guardado en sessionStorage: ", usuario);
+
         // Redirigir a la página principal
         window.location.href = "index.html";
     }
@@ -47,17 +66,7 @@ async function obtenerUsuarios() {
         return [];
     }
     return data;
-}
-
-// Obtener las matriculas y nombres de los usuarios
-async function obtenerMatriculasNombres() {
-    const data = await obtenerUsuarios();
-    if (data.length === 0) {
-        console.error("Problema con Usuarios");
-        return [];
-    }
-    return data;
-}   
+} 
 
 async function verificarCredenciales(email, password) {
     const data = await obtenerUsuarios();
@@ -76,9 +85,7 @@ async function verificarCredenciales(email, password) {
     return false;
 }
 
-async function registrarUsuario(nuevoUsuario) {
 
-}
 
 
 /* Pruebas de conexión a supabase

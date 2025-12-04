@@ -1,63 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon_io/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de Biblioteca Digital - Benemérita Universidad Autónoma de Puebla">
     <link rel="stylesheet" href="css/style_main.css">
     <title>Biblioteca BUAP</title>
 </head>
 
 <body>
+    <!-- Header -->
     <header class="head"> 
-        <img src="img/Escudobuap.png" alt="" class="header-img">
-        <h1>Benemerita Universidad Autonoma de Puebla</h1>
+        <img src="img/Escudobuap.png" alt="Escudo BUAP" class="header-img">
+        <h1>Benemérita Universidad Autónoma de Puebla</h1>
     </header>
-    <!--Buscador de los libros en la biblioteca-->
+
+    <!-- Barra de búsqueda -->
     <div class="search-book">
-        <img src="img/sinfondo.png" alt="Imagen de biblioteca" class="logo">
-        <!-- From Uiverse.io by Smit-Prajapati -->
+        <img src="img/sinfondo.png" alt="Logo Biblioteca" class="logo">
 
         <div class="search-container responsive-search">
-            <input class="input" type="text" placeholder="Busqueda de libros...">
-            <svg viewBox="0 0 24 24" class="search__icon">
+            <input class="input" type="text" placeholder="Buscar libros por título..." aria-label="Búsqueda de libros">
+            <svg viewBox="0 0 24 24" class="search__icon" aria-hidden="true">
                 <g>
-                    <path
-                        d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
-                    </path>
+                    <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
                 </g>
             </svg>
         </div>
-        <div class="sign-in-system responsive-sing-in">
-            <a href="login.html">Iniciar Sesion</a>
+
+        <!-- Boton de inicio de sesión -->
+        <div id="loginArea" class="sign-in-system responsive-sing-in">
+            <a href="login.html">Iniciar Sesión</a>
         </div>
     </div>
-    <!----------------------------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Contenedor principal -->
     <main class="container">
-        <!--Aca va ir nuestra parte de filtros-->
-        <div class="menu">
-            <details class="menulist">
-                <summary>Filtrar</summary>
+        <!-- Menú de filtros -->
+        <aside class="menu">
+            <details class="menulist" open>
+                <summary>Filtrar por Categoría</summary>
                 <ul>
-                    <!--Uso de botones para javascript-->
-                    <!--Funciones para actualizar los datos de el catalogo en id="increment"-->
-                    <li><button onclick="funcion1()">Opcion 1</button></li>
-                    <li><button onclick="funcion2()">Opcion 2</button></li>
-                    <li><button onclick="funcion3()">Opcion 3</button></li>
-                    <li><button onclick="funcion4()">Opcion 4</button></li>
-                    <li><button onclick="funcion5()">Opcion 5</button></li>
+                    <!-- Botones de filtro para categorías -->
+                    <li><button id="todas">📚 Todas</button></li>
+                    <li><button id="ficcion">📖 Ficción</button></li>
+                    <li><button id="ciencia">🔬 Ciencia</button></li>
+                    <li><button id="historia">📜 Historia</button></li>
+                    <li><button id="tecnologia">💻 Tecnología</button></li>
                 </ul>
             </details> 
-        </div>
-        <div class="catalog">
-            <!--Se van incrementando a medida que se agregan libros-->
-            <div class="increment"></div>
-        </div>
+        </aside>
+
+        <!-- Catálogo de libros -->
+        <section class="catalog" id="catalogo">
+            <!-- Los libros se cargarán dinámicamente aquí -->
+            <!-- Ejemplo de placeholder: -->
+            <!-- <article class="increment">
+                <h3 style="color: #003B5C; margin-bottom: 10px;">Título del Libro</h3>
+                <p style="color: #6C757D; font-size: 0.9rem;">Autor: Nombre del Autor</p>
+                <p style="color: #6C757D; font-size: 0.9rem;">Categoría: Ficción</p>
+                <p style="margin-top: 15px; flex-grow: 1;">Breve descripción del contenido del libro...</p>
+                <button style="background: #003B5C; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; margin-top: 10px;" >Ver detalles</button>
+            </article> -->
+        </section>
     </main>
+    <!-- Aquí lo de incrementar libros que puso Emmanuel -->
+
+    <!-- Footer -->
     <footer class="foot">
-        <p>Todos los derechos reservados</p>
+        <p>&copy; 2025 Benemérita Universidad Autónoma de Puebla. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase_client.js"></script>
+    <script type="module" src="js/conseguirLibros.js"></script>
+    <script type="module" src="js/sessionStorage.js"></script>
+    <script type="module" src="js/auth_ui.js"></script>
+    <!-- <script>
+        // Funciones placeholder para filtros
+        function filtrarCategoria(categoria) {
+            console.log('Filtrar por:', categoria);
+            // Aquí implementarás la lógica de filtrado
+        }
+    </script> -->
 </body>
 
 </html>

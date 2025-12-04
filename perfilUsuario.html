@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/perfilusuario.css">
+    <link rel="shortcut icon" href="img/Escudobuap.png" type="image/x-icon">
+    <title>Tu Perfil</title>
+</head>
+
+<body>
+    <button id="logoutBtn">Cerrar Sesión</button>
+    <script type="module" src="js/usuarioDashboard.js"></script>
+    <header class="header">
+        <img src="img/Escudobuap.png" alt="" srcset="" width="80px">
+        <h1>Benemerita Universidad Autonoma de Puebla</h1>
+    </header>
+    <main class="datos-user-grid">
+        <div class="item menu">
+            <!--En este apartado ira el menu de seleccion-->
+            <div class="cabecera">
+                <h1>PERFIL</h1>
+            </div>
+            <ul class="lista">
+                <li><button onclick="profile()">👤Profile</button></li>
+                <li><button onclick="security()">🔐Security</button></li>
+                <li><button onclick="activity()">📈Activity</button></li>
+                <li><button onclick="privacity()">🛡️Privacy</button></li>
+                <li><button onclick="settings()">⚙️Settings</button></li>
+            </ul>
+        </div>
+        <div class="item photo">
+            <img src="img/enojao.jpg" alt="" width="100%" height="100%">
+        </div>
+        <!--Datos del usuario, tales como name, email etc..-->
+        <div class="item data">
+            <h1>Mi perfil</h1>
+            <div class="subinfo">
+                <!--Aca va la informacion del usuario-->
+                <div class="datos name">
+                    <h4>Name:</h4>
+                </div>
+                <!--Aqui va el dato del nombre del usuario, este es el modificable-->
+                <div class="datos data-name" id="name-data">Luis Emmanuel Ramiro Luna</div>
+                <div class="datos email">
+                    <h4>Email:</h4>
+                </div>
+                <!--Aqui va el dato del correo del usuario, este es el modificable-->
+                <div class="datos data-email" id="email-data">luisemmanuepuebla@gmail.com</div>
+            </div>
+        </div>
+        <!--Aca va a ir la informacion del usuario-->
+        <div class="item info">
+            <table>
+                <caption>Informacion de actividad</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Book</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Expira</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Aca van a ir los datos del libro, estado y expiracion, este es un autoincrementable-->
+                    <tr id="datos">
+                        <td id="book"></td>
+                        <td id="estado"></td>
+                        <td id="expiration"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="foot">
+        <p>&copy; 2025 Benemérita Universidad Autónoma de Puebla. Todos los derechos reservados.</p>
+    </footer>
+</body>
+
+</html>
