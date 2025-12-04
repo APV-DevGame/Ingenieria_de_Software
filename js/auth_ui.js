@@ -1,4 +1,4 @@
-import { isLoggedIn, getField, clearUser } from './sessionStorage.js';
+import { isLoggedIn, getField } from './sessionStorage.js';
 
 function escapeHtml(str) {
     return String(str || '')

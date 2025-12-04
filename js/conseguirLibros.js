@@ -1,3 +1,5 @@
+import { setLibro } from './sessionStorage.js';
+
 // Elementos del DOM
 const TodasLasCategorias = document.getElementById('todas'),
     FiccionCategoria = document.getElementById('ficcion'),
@@ -7,13 +9,6 @@ const TodasLasCategorias = document.getElementById('todas'),
     // Contenedor de portadas
     ContenedorPortadas = document.getElementById('catalogo');
 mostrarPortadas('');
-
-// Funcionalidad del botón "Ver detalles"
-document.addEventListener('click', (e) => {
-    if (e.target && e.target.classList.contains('infoLibro')) {
-        window.location.href = 'info_book.html';
-    }
-})
 
 // add EventListener
 document.addEventListener('click', async (e) => {
@@ -45,7 +40,6 @@ document.addEventListener('click', async (e) => {
 
 async function mostrarPortadas(generoSeleccionado) {
     const libros = await conseguirLibros(generoSeleccionado, 0, 10);
-    console.log("Libros obtenidos: ", libros);
 
     // Limpiamos el contenedor antes de agregar nuevas portadas
     if (ContenedorPortadas) {
@@ -66,9 +60,15 @@ async function mostrarPortadas(generoSeleccionado) {
                 <button class="infoLibro" style="background: #003B5C; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; margin-top: 10px;">Ver Detalles</button>
             </article>
         `;
+        
         if (ContenedorPortadas) {
             ContenedorPortadas.appendChild(portada);
 
+            // Aregar evento al boton de ver detalles
+            portada.querySelector('.infoLibro').addEventListener('click', () => {
+                setLibro(libro);
+                window.location.href = 'info_book.html';
+            });
         }
     }
 }
@@ -82,14 +82,15 @@ async function conseguirLibros(generoSeleccionado, inicio = 0, limite = 10){
         if(generoNormalizado === ''){
             ({ data, error } = await supabaseClient
             .from('Libros')
-            .select('Titulo, Autor, Genero, Portada, Descripcion')
+            .select('*')
             .order('Titulo', { ascending : true })
             .range(inicio, inicio + limite - 1));
+            console.log("Libros obtenidos sin filtro de género: ", data)
         }
         else{
             ({ data, error } = await supabaseClient
             .from('Libros')
-            .select('Titulo, Autor, Genero, Portada, Descripcion')
+            .select('*')
             .eq('Genero', generoNormalizado)
             .order('Titulo', { ascending : true })
             .range(inicio, inicio + limite - 1));
