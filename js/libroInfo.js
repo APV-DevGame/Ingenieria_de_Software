@@ -21,12 +21,14 @@ if(tituloElemento) {
 // Reemplazar la información del libro en el DOM
 if(libroDesc) {
     const autorLibro = getLibroField('Autor') || 'Autor desconocido';
+    const facultadLibro = getLibroField('Facultad') || 'Facultad no especificada';
     const generoLibro = getLibroField('Genero') || 'Género no especificado';
     const editorialLibro = getLibroField('Editorial') || 'Editorial no especificada';
     
     libroDesc.innerHTML = `
         <p>${descLibro || 'Descripción no disponible.'}</p>
         <p class="autor"><strong>Autor:</strong> ${autorLibro}</p>
+        <p class="Facultad"><strong>Facultad:</strong> ${facultadLibro}</p>
         <p class="genero"><strong>Género:</strong> ${generoLibro}</p>
         <p class="editorial"><strong>Editorial:</strong> ${editorialLibro}</p>
     `;
