@@ -90,7 +90,9 @@ body{
 .info-container .info{
     height:70%;
     padding: 30px;
-
+}
+.info p{
+    margin: 10px;
 }
 .info-container .reserved{
     background-color: white;
