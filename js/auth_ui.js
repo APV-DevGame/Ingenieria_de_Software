@@ -28,11 +28,17 @@ function renderAuthUI() {
             </div>
         `;
 
-        // Agregar evento al botón para el dashboard del usuario
+        // Agregar evento al botón para el dashboard según el rol
         const btnPerfil = document.getElementById('btnPerfil');
         if (btnPerfil) {
             btnPerfil.addEventListener('click', () => {
-                window.location.href = 'perfilUsuario.html';
+                const rol = getField('Rol') || getField('rol');
+                
+                if (rol === 'Bibliotecario') {
+                    window.location.href = 'panel_bibliotecario.html';
+                } else {
+                    window.location.href = 'perfilUsuario.html';
+                }
             });
         }
     } else {

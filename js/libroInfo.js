@@ -84,6 +84,13 @@ if(reservarBtn) {
                 window.location.href = 'login.html';
                 return;
             }
+            
+            // Verifica si es un bibliotecario
+            const rolUsuario = getField('Rol') || getField('rol');
+            if (rolUsuario === 'Bibliotecario') {
+                alert('Los bibliotecarios no pueden reservar libros.');
+                return;
+            }
 
             const client = window.supabaseClient;
             if (!client) {
