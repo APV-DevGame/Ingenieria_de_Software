@@ -21,10 +21,10 @@
             <hr style="background: rgba(255, 255, 255, 0.2); margin-top: 30px;" size="4">
             <ol class="list">
                 <li><button type="button" onclick="mostrardashboard()">📊Dashboard</button></li>
-                <li><button type="button" onclick="mostrarsoporte()">📞Soporte</button></li>
                 <li><button type="button" onclick="mostrarprestamos()">🔄Prestamos</button></li>
                 <li><button type="button" onclick="mostrarlibros()">📚Libros</button></li>
                 <li><button type="button" onclick="mostrarusuario()">👤Usarios</button></li>
+                <li><button type="button" onclick="mostrarsoporte()">📞Soporte</button></li>
                 <li><button id="logoutBtn" class="logout-btn">🚪 Cerrar Sesión</button></li>
             </ol>
         </div>
@@ -33,34 +33,33 @@
             <div class="search item">
                 <header class="search-book">
                     <!--En el span va el nombre del bibliotecario-->
-                    <h1 style="color: white;"> Bienvenido, <span id="name-admin">Emmanuel</span></h1>
+                    <h1 style="color: black;"> Bienvenido, <span id="name-admin">Emmanuel</span></h1>
                 </header>
-                <div class="global-search">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Buscar libro..." id="buscador">
-                </div>
+                <div= id="global-search" <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar libro, prestamos, usuarios..." id="buscador">
+                </div=>
             </div>
             <!--Aca va el dashboard del bibliotecario-->
             <div id="mostrar-dashboard" class="visible">
                 <div class="estadistica estadi-1">
                     <h1>📚</h1>
                     <p>Libros prestados</p>
-                    <span id="num-prestados"></span>
+                    <span id="num-prestados">898</span>
                 </div>
                 <div class="estadistica estadi-2">
                     <h1>👥</h1>
                     <p>Miembros activos</p>
-                    <span class="num-miembros"></span>
+                    <span class="num-miembros">123343</span>
                 </div>
                 <div class="estadistica estadi-3">
                     <h1>📤</h1>
                     <p>Prestamos activos</p>
-                    <span class="num-prestactivos"></span>
+                    <span class="num-prestactivos">5000</span>
                 </div>
                 <div class="estadistica estadi-4">
                     <h1>📥</h1>
                     <p>Devoluciones hoy</p>
-                    <span id="num-devolucioneshoy"></span>
+                    <span id="num-devolucioneshoy">23</span>
                 </div>
             </div>
             <!--Aca va la parte del los datos de las tablas-->
@@ -103,7 +102,10 @@
             </div>
             <!--Libros en biblioteca-->
             <div id="datos-libros" class="oculto">
-                <button type="button" class="agregarlibro" id="agregarlibro"><h3>+Agregar libro</h3></button>
+                <!--Me envia a la pagina de registro de libros-->
+                <button type="button" class="agregarlibro" id="agregarlibro" onclick="agregarLibro()">
+                    <h3>+Agregar libro</h3>
+                </button>
                 <table class="tabla-datos">
                     <caption>Libros actuales</caption>
                     <thead>
@@ -170,10 +172,49 @@
             </div>
             <!--Aca mostramos los datos del soporte tecnico-->
             <div id="datos-soporte" class="oculto">
-                soporte
+                <div class="content">
+                    <!-- CONTACTOS -->
+                    <div class="section">
+                        <div class="section-title">
+                            📱 Formas de Contacto
+                        </div>
+                        <div class="contacts-grid">
+                            <div class="contact-card">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-label">EMAIL</div>
+                                <div class="contact-value">soporte@bibliotecauniversitaria.com</div>
+                                <div class="contact-hours">Respuesta en 24-48 horas</div>
+                            </div>
+
+                            <div class="contact-card">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-label">TELÉFONO</div>
+                                <div class="contact-value">+34 912 345 678</div>
+                                <div class="contact-hours">Lun-Vie: 09:00 - 18:00</div>
+                            </div>
+
+                            <div class="contact-card">
+                                <div class="contact-icon">💬</div>
+                                <div class="contact-label">CHAT EN VIVO</div>
+                                <div class="contact-value">Disponible ahora</div>
+                                <div class="contact-hours">Lun-Vie: 10:00 - 17:00</div>
+                            </div>
+
+                            <div class="contact-card">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-label">OFICINA</div>
+                                <div class="contact-value">Calle Principal, 42</div>
+                                <div class="contact-hours">Ave.atlixcayotl 28001</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
     </main>
+    <!-- Footer -->
+    <footer class="foot">
+        <p>&copy; 2025 Benemérita Universidad Autónoma de Puebla. Todos los derechos reservados.</p>
+    </footer>
     <script src="js/mostrar-quitar.js"></script>
 </body>
 
