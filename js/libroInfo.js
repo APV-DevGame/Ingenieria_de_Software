@@ -1,4 +1,4 @@
-import { getLibroField, getLibro, setLibroField } from './sessionStorage.js';
+import { getLibroField, getLibro, setLibroField, getField, isLoggedIn } from './sessionStorage.js';
 
 // Debug: ver qué hay en sessionStorage al cargar
 console.log('Libro en sessionStorage:', getLibro());
@@ -78,6 +78,13 @@ verificarEstadoLibro();
 if(reservarBtn) {
     reservarBtn.addEventListener('click', async () => {
         try {
+            // Verificar si el usuario está logueado
+            if (!isLoggedIn()) {
+                alert('Debes iniciar sesión para reservar un libro.');
+                window.location.href = 'login.html';
+                return;
+            }
+
             const client = window.supabaseClient;
             if (!client) {
                 console.error('supabaseClient no está disponible en window');
@@ -96,27 +103,66 @@ if(reservarBtn) {
                 return;
             }
 
-            console.log('Intentando reservar libro ID =', idLibro);
+            // Obtener matrícula del usuario
+            const matriculaUsuario = getField('Matricula') || getField('matricula');
+            if (!matriculaUsuario) {
+                console.error('Matrícula del usuario no encontrada');
+                alert('Error: no se pudo identificar al usuario.');
+                return;
+            }
 
-            const { data, error } = await client
+            console.log('Intentando reservar libro ID =', idLibro, 'para usuario:', matriculaUsuario);
+
+            // 1. Actualizar estado del libro
+            const { data: dataLibro, error: errorLibro } = await client
                 .from('Libros')
                 .update({ EstadoPrestamo: 'Reservado' })
                 .eq('ID', idLibro);
 
-            console.log('Respuesta de Supabase:', { data, error });
-
-            if (error) {
-                console.error('Error al reservar el libro:', error);
+            if (errorLibro) {
+                console.error('Error al reservar el libro:', errorLibro);
                 alert('No se pudo reservar el libro. Inténtalo de nuevo más tarde.');
-            } else {
-                alert('Libro reservado exitosamente.');
-                // Actualizar el estado del botón
-                reservarBtn.disabled = true;
-                reservarBtn.textContent = 'No disponible para reserva';
-
-                // Actualizar el estado del libro en sessionStorage
-                setLibroField('EstadoPrestamo', 'Reservado');
+                return;
             }
+
+            // 2. Crear registro en tabla Prestamos
+            const fechaHoy = new Date().toISOString().split('T')[0]; // Formato YYYY-MM-DD
+            const fechaDevolucion = new Date();
+            fechaDevolucion.setDate(fechaDevolucion.getDate() + 14); // 14 días de préstamo
+            const fechaDevolucionStr = fechaDevolucion.toISOString().split('T')[0];
+
+            // Debug: mostrar datos que se van a insertar
+            const datosPrestamo = {
+                IDLibro: idLibro,
+                MatriculaUsuario: matriculaUsuario,
+                FechaPrestamo: fechaHoy,
+                FechaDevolucion: fechaDevolucionStr
+            };
+            console.log('Datos a insertar en Prestamos:', datosPrestamo);
+
+            const { data: dataPrestamo, error: errorPrestamo } = await client
+                .from('Prestamos')
+                .insert(datosPrestamo);
+
+            // Debug: mostrar respuesta completa
+            console.log('Respuesta INSERT Prestamos:', { data: dataPrestamo, error: errorPrestamo });
+
+            if (errorPrestamo) {
+                console.error('Error completo al crear préstamo:', JSON.stringify(errorPrestamo, null, 2));
+                // El libro ya se reservó, pero no se pudo crear el préstamo
+                alert(`Error al registrar préstamo: ${errorPrestamo.message || errorPrestamo.details || 'Error desconocido'}`);
+            } else {
+                console.log('Préstamo creado:', dataPrestamo);
+                alert('¡Libro reservado exitosamente! Tienes 14 días para devolverlo.');
+            }
+
+            // Actualizar el estado del botón
+            reservarBtn.disabled = true;
+            reservarBtn.textContent = 'No disponible para reserva';
+
+            // Actualizar el estado del libro en sessionStorage
+            setLibroField('EstadoPrestamo', 'Reservado');
+
         } catch (error) {
             console.error('Error al reservar el libro:', error);
             alert('No se pudo reservar el libro. Inténtalo de nuevo más tarde.');

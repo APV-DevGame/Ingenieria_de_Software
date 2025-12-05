@@ -10,8 +10,6 @@
 </head>
 
 <body>
-    <button id="logoutBtn">Cerrar Sesión</button>
-    <script type="module" src="js/usuarioDashboard.js"></script>
     <header class="header">
         <img src="img/Escudobuap.png" alt="" srcset="" width="80px">
         <h1>Benemerita Universidad Autonoma de Puebla</h1>
@@ -23,11 +21,12 @@
                 <h1>PERFIL</h1>
             </div>
             <ul class="lista">
-                <li><button onclick="profile()">👤Profile</button></li>
-                <li><button onclick="security()">🔐Security</button></li>
-                <li><button onclick="activity()">📈Activity</button></li>
-                <li><button onclick="privacity()">🛡️Privacy</button></li>
-                <li><button onclick="settings()">⚙️Settings</button></li>
+                <li><button onclick="profile()">👤 Profile</button></li>
+                <li><button onclick="security()">🔐 Security</button></li>
+                <li><button onclick="activity()">📈 Activity</button></li>
+                <li><button onclick="privacity()">🛡️ Privacy</button></li>
+                <li><button onclick="settings()">⚙️ Settings</button></li>
+                <li><button id="logoutBtn" class="logout-btn">🚪 Cerrar Sesión</button></li>
             </ul>
         </div>
         <div class="item photo">
@@ -76,6 +75,14 @@
     <footer class="foot">
         <p>&copy; 2025 Benemérita Universidad Autónoma de Puebla. Todos los derechos reservados.</p>
     </footer>
+    
+    <!-- Supabase SDK + cliente -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase_client.js"></script>
+    <!-- Módulos del perfil -->
+    <script type="module" src="js/perfilUsuario.js"></script>
+    <script type="module" src="js/usuarioDashboard.js"></script>
 </body>
 
 </html>
