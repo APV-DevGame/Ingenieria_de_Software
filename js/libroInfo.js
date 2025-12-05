@@ -113,6 +113,37 @@ if(reservarBtn) {
 
             console.log('Intentando reservar libro ID =', idLibro, 'para usuario:', matriculaUsuario);
 
+            // VERIFICAR LÍMITE DE 3 RESERVAS ACTIVAS
+            // Solo contar reservas (duración de 1 día), no préstamos normales (más días)
+            const { data: prestamosUsuario, error: errorReservas } = await client
+                .from('Prestamos')
+                .select('FechaPrestamo, FechaDevolucion')
+                .eq('MatriculaUsuario', matriculaUsuario);
+
+            if (errorReservas) {
+                console.error('Error al verificar reservas:', errorReservas);
+            } else {
+                // Filtrar solo las reservas (diferencia de 1 día entre FechaPrestamo y FechaDevolucion)
+                const reservasActivas = prestamosUsuario?.filter(prestamo => {
+                    const fechaPrestamo = new Date(prestamo.FechaPrestamo);
+                    const fechaDevolucion = new Date(prestamo.FechaDevolucion);
+                    const diffDias = Math.round((fechaDevolucion - fechaPrestamo) / (1000 * 60 * 60 * 24));
+                    
+                    // Es reserva si la diferencia es de 1 día y aún no ha expirado
+                    const hoy = new Date();
+                    const noExpirada = fechaDevolucion >= hoy;
+                    
+                    return diffDias <= 1 && noExpirada;
+                }) || [];
+
+                console.log('Reservas activas del usuario (solo 24h):', reservasActivas.length);
+                
+                if (reservasActivas.length >= 3) {
+                    alert('Has alcanzado el límite máximo de 3 reservas activas.\n\nRecoge tus libros pendientes o espera a que expiren para poder reservar más.');
+                    return;
+                }
+            }
+
             // 1. Actualizar estado del libro
             const { data: dataLibro, error: errorLibro } = await client
                 .from('Libros')
@@ -125,18 +156,21 @@ if(reservarBtn) {
                 return;
             }
 
-            // 2. Crear registro en tabla Prestamos
-            const fechaHoy = new Date().toISOString().split('T')[0]; // Formato YYYY-MM-DD
-            const fechaDevolucion = new Date();
-            fechaDevolucion.setDate(fechaDevolucion.getDate() + 14); // 14 días de préstamo
-            const fechaDevolucionStr = fechaDevolucion.toISOString().split('T')[0];
+            // 2. Crear registro en tabla Prestamos (reserva de 24 horas)
+            const ahora = new Date();
+            const fechaReserva = ahora.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+            
+            // La reserva expira en 24 horas (fecha límite para recoger)
+            const fechaExpiracion = new Date(ahora);
+            fechaExpiracion.setHours(fechaExpiracion.getHours() + 24);
+            const fechaExpiracionStr = fechaExpiracion.toISOString().split('T')[0];
 
             // Debug: mostrar datos que se van a insertar
             const datosPrestamo = {
-                IDLibro: idLibro,
                 MatriculaUsuario: matriculaUsuario,
-                FechaPrestamo: fechaHoy,
-                FechaDevolucion: fechaDevolucionStr
+                FechaPrestamo: fechaReserva,
+                FechaDevolucion: fechaExpiracionStr,
+                IDLibro: idLibro
             };
             console.log('Datos a insertar en Prestamos:', datosPrestamo);
 
@@ -149,16 +183,25 @@ if(reservarBtn) {
 
             if (errorPrestamo) {
                 console.error('Error completo al crear préstamo:', JSON.stringify(errorPrestamo, null, 2));
-                // El libro ya se reservó, pero no se pudo crear el préstamo
-                alert(`Error al registrar préstamo: ${errorPrestamo.message || errorPrestamo.details || 'Error desconocido'}`);
+                alert(`Error al registrar reserva: ${errorPrestamo.message || errorPrestamo.details || 'Error desconocido'}`);
             } else {
-                console.log('Préstamo creado:', dataPrestamo);
-                alert('¡Libro reservado exitosamente! Tienes 14 días para devolverlo.');
+                console.log('Reserva creada:', dataPrestamo);
+                
+                // Calcular hora límite para mostrar al usuario
+                const horaLimite = fechaExpiracion.toLocaleString('es-MX', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                alert(`¡Libro reservado exitosamente!\n\n📚 Tienes 24 horas para recogerlo en la biblioteca.\n\n⏰ Fecha límite: ${horaLimite}\n\n⚠️ Si no lo recoges, la reserva se cancelará automáticamente.`);
             }
 
             // Actualizar el estado del botón
             reservarBtn.disabled = true;
-            reservarBtn.textContent = 'No disponible para reserva';
+            reservarBtn.textContent = 'Reservado - Recoger en 24h';
 
             // Actualizar el estado del libro en sessionStorage
             setLibroField('EstadoPrestamo', 'Reservado');
