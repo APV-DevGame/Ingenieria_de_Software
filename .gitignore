@@ -1,5 +1,5 @@
 # Configuración sensible (NO subir a GitHub)
-js/config.js
+# js/config.js
 .env
 
 # Archivos del sistema
