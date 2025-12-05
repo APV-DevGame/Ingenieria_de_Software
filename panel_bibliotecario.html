@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/panelbibliotecario.css">
+    <title>Panel</title>
+</head>
+
+<body>
+    <!--Aca mostramos los datos del bibliotecario-->
+    <header class="header">
+        <img src="img/Escudobuap.png" alt="" srcset="" width="80px">
+        <h1>Benemerita Universidad Autonoma de Puebla</h1>
+    </header>
+    <main class="panel-flex">
+        <div class="sidebar">
+            <h1>📚Menu</h1>
+            <hr style="background: rgba(255, 255, 255, 0.2); margin-top: 30px;" size="4">
+            <ol class="list">
+                <li><button type="button" onclick="mostrardashboard()">📊Dashboard</button></li>
+                <li><button type="button" onclick="mostrarsoporte()">📞Soporte</button></li>
+                <li><button type="button" onclick="mostrarprestamos()">🔄Prestamos</button></li>
+                <li><button type="button" onclick="mostrarlibros()">📚Libros</button></li>
+                <li><button type="button" onclick="mostrarusuario()">👤Usarios</button></li>
+                <li><button id="logoutBtn" class="logout-btn">🚪 Cerrar Sesión</button></li>
+            </ol>
+        </div>
+        <div class="dashboard">
+            <!--Aca va el nombre del usuario y la parte dek buscador-->
+            <div class="search item">
+                <header class="search-book">
+                    <!--En el span va el nombre del bibliotecario-->
+                    <h1 style="color: white;"> Bienvenido, <span id="name-admin">Emmanuel</span></h1>
+                </header>
+                <div class="global-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar libro..." id="buscador">
+                </div>
+            </div>
+            <!--Aca va el dashboard del bibliotecario-->
+            <div id="mostrar-dashboard" class="visible">
+                <div class="estadistica estadi-1">
+                    <h1>📚</h1>
+                    <p>Libros prestados</p>
+                    <span id="num-prestados"></span>
+                </div>
+                <div class="estadistica estadi-2">
+                    <h1>👥</h1>
+                    <p>Miembros activos</p>
+                    <span class="num-miembros"></span>
+                </div>
+                <div class="estadistica estadi-3">
+                    <h1>📤</h1>
+                    <p>Prestamos activos</p>
+                    <span class="num-prestactivos"></span>
+                </div>
+                <div class="estadistica estadi-4">
+                    <h1>📥</h1>
+                    <p>Devoluciones hoy</p>
+                    <span id="num-devolucioneshoy"></span>
+                </div>
+            </div>
+            <!--Aca va la parte del los datos de las tablas-->
+            <!--Aca muestra los datos de los prestamos-->
+            <div id="datos-prestamos" class="oculto">
+                <!--Aca agregar un nuevo libro a los prestamos-->
+                <button type="button" class="nuevo" id="nuevo-libro">
+                    <h3>+Nuevo prestamo</h3>
+                </button>
+                <table class="tabla-datos">
+                    <caption>Prestamos actuales</caption>
+                    <thead>
+                        <tr>
+                            <th>Matricula Usuario</th>
+                            <th>Fecha de prestamo</th>
+                            <th>Fecha de devolucion</th>
+                            <th>Estado</th>
+                            <th>ID de libro</th>
+                            <th colspan="2">Acciones</th>
+
+                        </tr>
+                        <tr id="autoincrementable">
+                            <td id="matricula">Matricula Usuario</td>
+                            <td id="fecha-prestamo">Fecha de prestamo</td>
+                            <td id="fecha-devolucion">Fecha de devolucion</td>
+                            <td id="estado-libro">Estado</td>
+                            <td id="id-libro">ID de libro</td>
+                            <td class="unique">
+                                <button id="renovar" class="renovar" onclick="renovar()">Renovar</button>
+                            </td>
+                            <td class="unique">
+                                <button id="devolver" class="devolver" onclick="devolver()">Devolver</button>
+                            </td>
+                            <td class="unique">
+                                <button id="recordatorio" class="recordatorio" onclick="recordar()">recordar</button>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <!--Libros en biblioteca-->
+            <div id="datos-libros" class="oculto">
+                <button type="button" class="agregarlibro" id="agregarlibro"><h3>+Agregar libro</h3></button>
+                <table class="tabla-datos">
+                    <caption>Libros actuales</caption>
+                    <thead>
+                        <tr>
+                            <th>Id libro</th>
+                            <th>Facultad</th>
+                            <th>Unidades</th>
+                            <th>Titulo</th>
+                            <th>Autor</th>
+                            <th>Genero</th>
+                            <th>Idioma</th>
+                            <th>Editorial</th>
+                            <th>Estado prestamo</th>
+                            <th colspan="2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="idlibro">Id libro</td>
+                            <td id="facultad">Facultad</td>
+                            <td id="unidades">Unidades</td>
+                            <td id="titulolibro">Titulo</td>
+                            <td id="autorlibro">Autor</td>
+                            <td id="generolibro">Genero</td>
+                            <td id="idiomalibro">Idioma</td>
+                            <td id="editoriallibro">Editorial</td>
+                            <td id="estadolibro">Estado prestamo</td>
+                            <td class="unique"><button type="button" onclick="eliminarbook()">Eliminar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--Aca van los datos de la reservas-->
+            <div id="datos-usuario" class="oculto">
+                <table class="tabla-datos">
+                    <caption>Datos usuarios</caption>
+                    <thead>
+                        <tr>
+                            <th>Matricula</th>
+                            <th>Contraseña</th>
+                            <th>Nombre</th>
+                            <th>Apellido paterno</th>
+                            <th>Apellido materno</th>
+                            <th>Correo</th>
+                            <th>Numero telefonico</th>
+                            <th>Rol</th>
+                            <th>Tiene multas?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Matricula</td>
+                            <td>Contraseña</td>
+                            <td>Nombre</td>
+                            <td>Apellido paterno</td>
+                            <td>Apellido materno</td>
+                            <td>Correo</td>
+                            <td>Numero telefonico</td>
+                            <td>Rol</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--Aca mostramos los datos del soporte tecnico-->
+            <div id="datos-soporte" class="oculto">
+                soporte
+            </div>
+        </div>
+    </main>
+    <script src="js/mostrar-quitar.js"></script>
+</body>
+
+</html>
